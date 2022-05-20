@@ -1,0 +1,73 @@
+// to store 
+// Aadhar Details
+pragma solidity ^0.6.8;
+  
+// Creating a Smart Contract
+contract AadharDetails{
+  
+   // Structure of AadharID
+   struct AadharID{
+       
+       // State variables
+       int Aadharnumber;
+       string name;
+       string DOB;
+       string Gender;
+       string Address;
+       string PinCode;
+   }
+   
+   AadharDetails []aads;
+   // Function to add 
+   // Aadhar details
+   function addAadhar(
+     int aadharnumber, string memory name, 
+     string memory DOB, 
+     string memory Gender,
+     string memory Address,
+     string memory PinCode
+   ) private{
+       AadharID memory e
+         =AadharID(aadharnumber,
+                   name,
+                   DOB,
+                   Gender,
+                   Address,
+                   PinCode);
+       aads.push(e);
+   }
+   // Function to get
+ // details of Aadhar
+ function getDetails(
+ int aadharnumber
+ ) private view returns(
+ string memory, 
+ string memory, 
+ string memory,
+string memory,
+string memory){
+ uint i;
+ for(i=0;i<aads.length;i++)
+ {
+ AadharID memory e
+ =aads[i];
+ 
+ // Looks for a matching 
+ // Aadhar id
+ if(e.aadharnumber==aadharnumber)
+ {
+ return(e.name,
+ e.DOB,
+ e.Gender,
+e.Address,
+e.PinCode);
+ }
+ }
+ 
+ // If provided Aadhar number 
+ // id is not present
+ // it returns Not 
+ // Found
+ return("Not Found");
+ }
+}
